@@ -40,7 +40,6 @@ h1 {
 /* SECCION DE CREACION Y ESTILOS DEL NAV */
 
 nav {
-    background-color: #c0d8e6; /* Fondo celeste pastel */
     text-align: center;
     margin-top: 100px;
     font-family: 'Cuprum', sans-serif;
@@ -63,7 +62,7 @@ a {
     height: 100px;
     line-height: 100px;
     border-radius: 50%;
-    background-color: #f0f0f0; /* Color de fondo de los círculos */
+    background-color: #c0d8e6; /* Color de fondo de los círculos */
     color: #333;
     text-decoration: none;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -102,6 +101,175 @@ a::before {
     100% {
         transform: scale(0.8);
         opacity: 0.5;
+    }
+}
+/* Se realiza la pagina con efectos Grid Responsive */
+.contenedor{
+    font-family: 'Cuprum', sans-serif;
+    width: 90%;
+    max-width: 1000px; /*ancho máximo de la página*/
+    margin: 20px auto; /*auto permite centrar nuestra página en forma horizontal*/
+    display: grid;
+    gap: 20px; /*nos ahorramos tenes que poner márgenes entre los elementos*/
+    /*3 columnas: contenido (con 2 widgets) + sidebar*/
+    grid-template-columns: repeat(3,1fr);
+    /*4 filas: header, contenido, widgets, footer*/
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:"encabezado encabezado encabezado"
+                        "contenido contenido contenido"
+                        "contenido contenido contenido"
+                        "pie pie pie";
+}
+
+.contenedor > div,
+.contenedor .encabezado,
+.contenedor .contenido,
+.contenedor .pie {
+    padding: 20px;
+    border-radius: 4px;
+    font-family: 'Cuprum', sans-serif;
+}
+
+.contenedor .encabezado{
+    background:#f2f2f2;
+    color: black;
+    grid-area: encabezado;
+    list-style: inside;
+}
+
+.contenedor .contenido{
+    background: #f2f2f2;
+    grid-area: contenido; 
+}
+
+.contenedor .pie{
+    background: #f2f2f2;
+    /* font-family:'Cormorant Garamond', serif; */
+    color: black;
+    grid-area: pie; 
+}
+
+@media screen and (max-width: 768px){
+    .contenedor{
+        grid-template-areas:"encabezado encabezado encabezado"
+                            "contenido contenido contenido"
+                            "contenido contenido contenido"
+                            "pie pie pie";
+    }
+}
+
+@media screen and (max-width: 450px){
+    .contenedor{
+        grid-template-areas:"encabezado encabezado encabezado"
+                            "contenido contenido contenido"
+                            "contenido contenido contenido"
+                            "pie pie pie";
+    }
+}
+
+header div.contenedor{
+    place-content: flex-start;
+
+}
+
+header div.contenedor nav {
+    width: 70%;
+    display: flex;
+    place-content: space-between;
+
+}
+
+#menu, #menu-check{
+    display: none;
+}
+
+@media only screen and (max-width: 900px){
+    header div.contenedor, hearder div.contenedor ul, header div.contenedor ul li{
+        display: inline;
+    }
+
+    header div.contenedor nav{
+        width: 100%;
+        display: inline;
+    }
+}
+
+@media only screen and (max-width:700px) {
+    header h1 {
+        margin: 0;
+    }
+
+    header hi a{
+        padding: 0;
+    }
+
+    header div.contenedor{
+        display: flex;
+        place-content: space-between;
+    }
+
+    #menu-check:not(:checked) ~ nav{
+        display: none;
+    }
+
+    #menu-check:checked ~ nav {
+        display: block;
+    }
+
+    #menu{
+        display: block;
+        color:black;
+        background-color: #f2f2f2;
+        font-size: 1.2em;
+        font-weight: bold;
+        border: 3px solid #f2f2f2;
+        border-radius: 0.3em;
+        position: absolute;
+        right: 0.5em;
+        top: 0.5em;
+        z-index: 9999;
+    }
+
+    #menu:hover{
+        color: black;
+        background: #f2f2f2;
+    }
+
+    #menu-cerrar{
+        display: none;
+    }
+
+    #menu-check:checked ~ label #menu-abrir{
+        display: none;
+    }
+
+    #menu-check:checked ~ label #menu-cerrar {
+        display: block;
+    }
+
+    header div.contenedor nav{
+        position: absolute;
+        top:0;
+        right: 0;
+        height: 100%;
+        background-color: #333;
+        padding-top: 0.5em;
+        padding-right: 1.5em;
+        opacity: 0.8;
+    }
+
+    header div.contenerdor nav ul a {
+        color: #f2f2f2;
+        background: none;
+    }
+
+    header div.contenedor nav ul, header div.contenedor nav ul li {
+        display: block;
+        text-align: right;
+    }
+
+    main{
+        text-align: center;
     }
 }
 
